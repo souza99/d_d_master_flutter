@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../Styles/colors.dart' as colors;
 
 class Menu extends StatelessWidget {
   String? email;
   String? senha;
+
   Widget criarBotao(String nomeBotao, VoidCallback? acaoBotao) {
     return ElevatedButton(
       child: Text(nomeBotao),
@@ -23,7 +23,7 @@ class Menu extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Center(child: Text("Rpg Master")),
-          backgroundColor: colors.Cores().Verde(),
+          backgroundColor: Colors.green,
         ),
         body: Center(
           child: Column(
@@ -75,7 +75,9 @@ class Menu extends StatelessWidget {
               criarBotao("Hello World",
                   () => Navigator.pushNamed(context, "/helloWorld")),
               criarBotao("Calculadora",
-                  () => Navigator.pushNamed(context, "/calculadora"))
+                  () => Navigator.pushNamed(context, "/calculadora")),
+              criarBotao("Cadastro de Usuario",
+                      () => Navigator.pushNamed(context, "/usuarioCadastro"))
             ],
           ),
         ));

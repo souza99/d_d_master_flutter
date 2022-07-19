@@ -3,6 +3,7 @@ import 'package:rpg_d_d_flutter/View/hello_world.dart';
 import 'package:rpg_d_d_flutter/View/calculadora.dart';
 import 'package:rpg_d_d_flutter/View/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:rpg_d_d_flutter/View/usuario_cadastro.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         "/calcularIdade": (context) => CalcularIdade(),
         "/helloWorld": (context) => HelloWorld(),
         "/calculadora": (context) => Calculadora(),
+        "/usuarioCadastro": (context) => UsuarioCadastro(),
       },
       // const MyHomePage(title: 'Primeiro app'),
     );
