@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "261455963809",
+    "project_id": "rpgmaster-8672c",
+    "storage_bucket": "rpgmaster-8672c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261455963809:android:3e500e01b233f3b6ac32e0",
+        "android_client_info": {
+          "package_name": "com.example.rpg_d_d_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261455963809-qupnv0nqoqq5rpjsgj525ha04i99g42a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaJpZ6xV7kDE0hLPotpGrYi5NF7fRxSOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261455963809-qupnv0nqoqq5rpjsgj525ha04i99g42a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

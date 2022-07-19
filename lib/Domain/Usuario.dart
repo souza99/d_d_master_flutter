@@ -1,23 +1,13 @@
-import 'package:flutter/cupertino.dart';
 
 class Usuario {
-  final int id;
-  final String nome;
-  final int nivel;
-  final String email;
-  final String senha;
-  final String telefone;
+  late int _id;
+  late String _nome;
+  late int _nivel;
+  late String _email;
+  late String _senha;
+  late String _telefone;
 
-  const Usuario({
-    required this.id,
-    required nivel,
-    required nome,
-    required email,
-    required senha,
-    required telefone,
-  });
-
-  /**int get id => _id;
+  int get id => _id;
 
   set id(int id) {
     _id = id;
@@ -45,6 +35,6 @@ class Usuario {
 
   String get telefone => _telefone;
 
-  set telefone(String telefone) => _telefone = telefone;**/
+  set telefone(String telefone) => _telefone = telefone;
 
 }
