@@ -3,9 +3,13 @@ import 'package:rpg_d_d_flutter/View/hello_world.dart';
 import 'package:rpg_d_d_flutter/View/calculadora.dart';
 import 'package:rpg_d_d_flutter/View/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializaApp();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
