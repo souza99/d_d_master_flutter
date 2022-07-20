@@ -92,4 +92,12 @@ class Sqflite {
     }
   }
 
+  Future<List<Map<String, Object?>>?> buscarDadosItem() async {
+
+    get();
+
+    List<Map<String, Object?>>? lista = await _db?.rawQuery('SELECT * FROM ?', [item]);
+    return lista;
+  }
+
 }
