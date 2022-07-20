@@ -4,8 +4,8 @@ import 'package:sqflite/sqflite.dart';
 
 import '../Domain/Classe.dart';
 
-class UsuarioCadastro extends StatelessWidget {
-  UsuarioCadastro({Key? key}) : super(key: key);
+class PersonagemCadastro extends StatelessWidget {
+  PersonagemCadastro({Key? key}) : super(key: key);
 
   late int? id;
   late String nome;
