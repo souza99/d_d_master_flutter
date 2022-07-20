@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../Styles/colors.dart' as colors;
 
 class Menu extends StatelessWidget {
   String? email;
   String? senha;
+
   Widget criarBotao(String nomeBotao, VoidCallback? acaoBotao) {
     return ElevatedButton(
       child: Text(nomeBotao),

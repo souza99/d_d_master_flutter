@@ -1,11 +1,17 @@
-import 'package:flutter/cupertino.dart';
 
-import '../Data/dummy_users.dart';
 
-class Usuario with ChangeNotifier {
-  final Map<String, Usuario> _usuarios = {...DUMMY_USUARIOS};
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rpg_d_d_flutter/Domain/Usuario.dart';
 
-  List<Usuario> get all {
-    return [..._usuarios.values];
+class UsuarioService {
+
+
+  Future creatUsuario({required Usuario usuario}) async {
+    //Referencia ao documento
+    final docUser =FirebaseFirestore.instance.collection('usuarios').doc('my-id');
   }
+
+  final json = {
+    // 'nome' : usuario.nome
+  };
 }
