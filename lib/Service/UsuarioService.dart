@@ -12,6 +12,6 @@ class UsuarioService {
   }
 
   final json = {
-    'nome' : usuario.nome
+    // 'nome' : usuario.nome
   };
 }
