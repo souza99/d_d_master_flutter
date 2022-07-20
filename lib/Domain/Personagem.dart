@@ -29,16 +29,15 @@ class Personagem {
     _nivel = nivel;
   }
 
-  double vida => _vida;
+  double get vida => _vida;
 
-  set vida(double vida){
+  set vida(double vida) {
     _vida = vida;
   }
 
   List<Item> get item => _iventario;
 
-  set item(List<Item> item){
+  set item(List<Item> item) {
     _iventario = item;
   }
-
 }

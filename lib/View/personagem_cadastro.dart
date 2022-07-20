@@ -14,8 +14,8 @@ class UsuarioCadastro extends StatelessWidget {
   //late List<Item> iventario;
   late int? classe_id;
 
-  Future<int> salvarUsuario(
-      String nome, int nivel, double vida, Classe classe_id,
+  Future<int> salvarPersonagem(
+      String nome, int nivel, double vida, int classe_id,
       [int? id]) async {
     String caminho = join(await getDatabasesPath(), 'banco');
     Database banco = await openDatabase(caminho, version: 1);
@@ -104,7 +104,7 @@ class UsuarioCadastro extends StatelessWidget {
                         MaterialStateProperty.all<Color>(Colors.green),
                   ),
                   onPressed: () {
-                    salvarUsuario(nome, telefone, email, senha, id);
+                    salvarPersonagem(nome, nivel!, vida!, classe_id!);
                     Navigator.pop(context);
                   },
                 ),

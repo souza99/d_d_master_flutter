@@ -6,21 +6,31 @@ class Sqflite {
 
   //Usuario
   static String criarUsuario = "CREATE TABLE usuario(id INTEGER PRIMARY KEY)";
-  static String insertUsuario = "INSERT INTO usuario (nome, telefone, email, senha) VALUES (?,?,?,?)";
-  static String updateUsuario = "UPDATE usuario SET nome = ?, telefone = ?, email = ?, senha = ? WHERE id = ?";
+  static String insertUsuario =
+      "INSERT INTO usuario (nome, telefone, email, senha) VALUES (?,?,?,?)";
+  static String updateUsuario =
+      "UPDATE usuario SET nome = ?, telefone = ?, email = ?, senha = ? WHERE id = ?";
 
   //Item
   static String criarItem = "CREATE TABLE item(id INTEGER PRIMARY KEY)";
-  static String insertItem = "INSERT INTO item (nome, descricao, ataque, defesa, agilidade, mana, predefinicao) VALUES (?,?,?,?,?,?,?)";
-  static String updateItem = "UPDATE item SET nome = ?, descricao = ?, ataque = ?, defesa = ?, agilidade = ?, mana = ?, predefinicao = ? WHERE id = ?";
+  static String insertItem =
+      "INSERT INTO item (nome, descricao, ataque, defesa, agilidade, mana, predefinicao) VALUES (?,?,?,?,?,?,?)";
+  static String updateItem =
+      "UPDATE item SET nome = ?, descricao = ?, ataque = ?, defesa = ?, agilidade = ?, mana = ?, predefinicao = ? WHERE id = ?";
+
+  //Personagem
+  static String criarPersonagem =
+      "CREAT TABLE personagem(id,nome,nivel,vida,classe_id)";
+  static String inserirPersonagem =
+      "INSERT INTO personagem (nome, nivel, vida, classe_id) VALUES (?,?,?,?)";
+  static String atualizarpersonagem =
+      "UPDATE personagem SET nome = ?, nivel = ?, vida = ?, classe = ?";
 
   static Future<Database?> get() async {
     if (_db == null) {
       var path = join(await getDatabasesPath(), 'bancosqlf.db');
       deleteDatabase(path);
-      _db = await openDatabase(path,
-          version: 1,
-      onCreate: (db, v) {
+      _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(criarUsuario);
         db.execute(criarItem);
       });
@@ -28,8 +38,9 @@ class Sqflite {
     return _db;
   }
 
-  static Future<Future<int>?> salvarUsuario(String nome, String telefone, String email, String senha, [int? id]) async {
-
+  static Future<Future<int>?> salvarUsuario(
+      String nome, String telefone, String email, String senha,
+      [int? id]) async {
     get();
 
     String sql;
@@ -45,24 +56,51 @@ class Sqflite {
     return linhasAfetadas;
   }
 
-
-
-  static Future<Future<int>?> salvarItem(String nome, String descricao, double ataque, double defesa,
-      double agilidade, double mana, bool predefinicao, [int? id]) async {
-
+  static Future<Future<int>?> salvarItem(
+      String nome,
+      String descricao,
+      double ataque,
+      double defesa,
+      double agilidade,
+      double mana,
+      bool predefinicao,
+      [int? id]) async {
     get();
 
     String sql;
     Future<int>? linhasAfetadas;
     if (id == null) {
       sql = insertUsuario;
-      linhasAfetadas = _db?.rawInsert(sql, [nome, descricao, ataque, defesa, agilidade, mana, predefinicao]);
+      linhasAfetadas = _db?.rawInsert(sql,
+          [nome, descricao, ataque, defesa, agilidade, mana, predefinicao]);
     } else {
       sql = updateUsuario;
-      linhasAfetadas = _db?.rawUpdate(sql, [nome, descricao, ataque, defesa, agilidade, mana, predefinicao, id]);
+      linhasAfetadas = _db?.rawUpdate(sql,
+          [nome, descricao, ataque, defesa, agilidade, mana, predefinicao, id]);
     }
 
     return linhasAfetadas;
   }
 
+
+  static Future<Future<int>?> salvarPersonagem(
+    String nome,
+    int nivel,
+    double vida,
+    int classe_id,
+    [int? id]) async {
+      get()
+
+      String sql;
+      Future<int>? linhasAfetadas;
+      if(id == null){
+        sql = inserirPersonagem;
+        linhasAfetadas = _db?.rawInsert(sql, [nome, nivel, vida, classe_id]);
+      }else{
+        sql = atualizarpersonagem;
+        linhasAfetadas = _db?.rawUpdate(sql, [nome, nivel, vida, classe_id, id]);
+      }
+
+      return linhasAfetadas;
+    }
 }
