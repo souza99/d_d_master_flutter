@@ -8,19 +8,19 @@ class UsuarioCadastro extends StatelessWidget {
   UsuarioCadastro({Key? key}) : super(key: key);
 
   late int? id;
+  late String descricao;
   late String nome;
-  late String telefone;
-  late String email;
-  late String senha;
-
-
-
+  late double ataque;
+  late double defesa;
+  late double agilidade;
+  late int mana;
+  late bool predefinido;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cadastro de Usuario", textAlign: TextAlign.center,),
+        title: const Text("Cadastro de Item", textAlign: TextAlign.center,),
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
@@ -32,40 +32,62 @@ class UsuarioCadastro extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   label: Text("Nome:"),
-                  hintText: "Ex: João José da Costa",
+                  hintText: "Ex: Espada longa",
                 ),
               ),
             ),
 
             Padding(padding: EdgeInsets.all(15),
               child: TextFormField(
-                onChanged: (value) => telefone = value,
+                onChanged: (value) => descricao = value,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                  label: Text("Telefone (Escreva somente os números): "),
-                  hintText: "Ex: 01999999999",
+                  label: Text("Descricao:"),
+                  hintText: "Ex: Espada com uma lamina longa",
                 ),
               ),
             ),
 
             Padding(padding: EdgeInsets.all(15),
               child: TextFormField(
-                onChanged: (value) => email = value,
+                onChanged: (value) => nome = value,
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                  label: Text("E-mail:"),
-                  hintText: "Ex: exemplo@email.com",
+                  label: Text("Ataque:"),
+                  hintText: "Ex: 15.0",
                 ),
               ),
             ),
 
             Padding(padding: EdgeInsets.all(15),
               child: TextFormField(
-                onChanged: (value) => senha = value,
-                keyboardType: TextInputType.visiblePassword,
+                onChanged: (value) => nome = value,
+                keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
-                  label: Text("Senha:"),
-                  hintText: "Ex: 123456",
+                  label: Text("Defesa:"),
+                  hintText: "Ex: 5.0",
+                ),
+              ),
+            ),
+
+            Padding(padding: EdgeInsets.all(15),
+              child: TextFormField(
+                onChanged: (value) => nome = value,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  label: Text("Agilidade:"),
+                  hintText: "Ex: -7.0",
+                ),
+              ),
+            ),
+
+            Padding(padding: EdgeInsets.all(15),
+              child: TextFormField(
+                onChanged: (value) => nome = value,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
+                  label: Text("Mana:"),
+                  hintText: "Ex: 0.0",
                 ),
               ),
             ),
@@ -77,7 +99,7 @@ class UsuarioCadastro extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                 ),
                 onPressed: () {
-                  Sqlite.Sqflite.salvarUsuario(nome, telefone, email, senha, id);
+                  Sqlite.Sqflite.salvarItem(nome, descricao, ataque, defesa, agilidade, mana, predefinido, id);
                   Navigator.pop(context);
                 },
               ),
