@@ -65,7 +65,7 @@ class Sqflite {
   static Future<void> deletarUsuario([int? id]) async {
     get();
 
-    if (id == null) {
+    if (id != null) {
       String sql;
       sql = deleteTable;
       _db?.rawDelete(sql, [usuario, id]);
@@ -95,7 +95,7 @@ class Sqflite {
   static Future<void> deletarItem([int? id]) async {
     get();
 
-    if (id == null) {
+    if (id != null) {
       String sql;
       sql = deleteTable;
       _db?.rawDelete(sql, [item, id]);
