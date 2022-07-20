@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:rpg_d_d_flutter/View/usuario_cadastro.dart';
 
-Future main() async{
+import 'View/personagem_cadastro.dart';
+
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         "/helloWorld": (context) => HelloWorld(),
         "/calculadora": (context) => Calculadora(),
         "/usuarioCadastro": (context) => UsuarioCadastro(),
+        "/salvarPersonagem": (context) => PersonagemCadastro(),
       },
       // const MyHomePage(title: 'Primeiro app'),
     );
