@@ -1,18 +1,22 @@
 import 'package:rpg_d_d_flutter/View/calcular_idade.dart';
 import 'package:rpg_d_d_flutter/View/hello_world.dart';
 import 'package:rpg_d_d_flutter/View/calculadora.dart';
+import 'package:rpg_d_d_flutter/View/item_cadastro.dart';
+import 'package:rpg_d_d_flutter/View/item_lista.dart';
 import 'package:rpg_d_d_flutter/View/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:rpg_d_d_flutter/View/usuario_cadastro.dart';
+import '../Model/sqflite/Sqlite.dart' as Sqlite;
 
 import 'View/personagem_cadastro.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Sqlite.Sqflite.get();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -33,6 +37,8 @@ class MyApp extends StatelessWidget {
         "/calculadora": (context) => Calculadora(),
         "/usuarioCadastro": (context) => UsuarioCadastro(),
         "/salvarPersonagem": (context) => PersonagemCadastro(),
+        "/itemCadastro": (context) => ItemCadastro(),
+        "/itemLista": (context) => ListaItem(),
       },
       // const MyHomePage(title: 'Primeiro app'),
     );

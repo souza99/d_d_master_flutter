@@ -9,7 +9,7 @@ class Sqflite {
 
   //Usuario
   static String usuario = "usuario";
-  static String criarUsuario = "CREATE TABLE usuario(id INTEGER PRIMARY KEY)";
+  static String criarUsuario = "CREATE TABLE usuario(id INTEGER PRIMARY KEY, nome TEXT, telefone TEXT, email TEXT, senha TEXT)";
   static String insertUsuario =
       "INSERT INTO usuario (nome, telefone, email, senha) VALUES (?,?,?,?)";
   static String updateUsuario =
@@ -17,7 +17,8 @@ class Sqflite {
 
   //Item
   static String item = "item";
-  static String criarItem = "CREATE TABLE item(id INTEGER PRIMARY KEY)";
+  static String criarItem = '''CREATE TABLE item(id INTEGER PRIMARY KEY, nome TEXT,
+   descricao TEXT, ataque DOUBLE, defesa DOUBLE, agilidade DOUBLE, mana DOUBLE, predefinicao BOOLEAN)''';
   static String insertItem =
       "INSERT INTO item (nome, descricao, ataque, defesa, agilidade, mana, predefinicao) VALUES (?,?,?,?,?,?,?)";
   static String updateItem =
@@ -81,11 +82,11 @@ class Sqflite {
     String sql;
     Future<int>? linhasAfetadas;
     if (id == null) {
-      sql = insertUsuario;
+      sql = insertItem;
       linhasAfetadas = _db?.rawInsert(sql,
           [nome, descricao, ataque, defesa, agilidade, mana, predefinicao]);
     } else {
-      sql = updateUsuario;
+      sql = updateItem;
       linhasAfetadas = _db?.rawUpdate(sql,
           [nome, descricao, ataque, defesa, agilidade, mana, predefinicao, id]);
     }
@@ -132,11 +133,11 @@ class Sqflite {
     }
   }
 
-  Future<List<Map<String, Object?>>?> buscarDadosItem() async {
+  static Future<List<Map<String, Object?>>> buscarDadosItem() async {
 
     get();
 
-    List<Map<String, Object?>>? lista = await _db?.rawQuery('SELECT * FROM ?', [item]);
+    List<Map<String, Object?>> lista = await _db.rawQuery('SELECT * FROM ?', [item]);
     return lista;
   }
 

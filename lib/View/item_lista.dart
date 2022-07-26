@@ -35,13 +35,14 @@ class ListaItem extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Lista de Itens"),
+          backgroundColor: Colors.green,
 
           //Define as ações que podem ser realizadas na appbar
           actions: [
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () =>
-                  Navigator.pushNamed(context, '/formItem', arguments: null),
+                  Navigator.pushNamed(context, '/itemCadastro', arguments: null),
             )
           ],
         ),
@@ -49,6 +50,8 @@ class ListaItem extends StatelessWidget {
         body: FutureBuilder(
 
           // future: Sqlite.Sqflite.buscarDadosItem(),
+          key: key,
+          future: Sqlite.Sqflite.buscarDadosItem(),
 
 
           builder: (context,

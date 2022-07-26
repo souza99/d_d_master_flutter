@@ -3,18 +3,18 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../Model/sqflite/Sqlite.dart' as Sqlite;
 
-class UsuarioCadastro extends StatelessWidget {
+class ItemCadastro extends StatelessWidget {
 
-  UsuarioCadastro({Key? key}) : super(key: key);
+  ItemCadastro({Key? key}) : super(key: key);
 
-  late int? id;
-  late String descricao;
-  late String nome;
-  late double ataque;
-  late double defesa;
-  late double agilidade;
-  late int mana;
-  late bool predefinido;
+  late int? id = null;
+  late String descricao = '';
+  late String nome = '';
+  late double ataque = 0.0;
+  late double defesa = 0.0;
+  late double agilidade = 0.0;
+  late int mana = 0;
+  late bool predefinido = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class UsuarioCadastro extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.all(15),
+            Padding(padding: const EdgeInsets.all(15),
               child: TextFormField(
                 onChanged: (value) => nome = value,
                 keyboardType: TextInputType.text,
@@ -37,7 +37,7 @@ class UsuarioCadastro extends StatelessWidget {
               ),
             ),
 
-            Padding(padding: EdgeInsets.all(15),
+            Padding(padding: const EdgeInsets.all(15),
               child: TextFormField(
                 onChanged: (value) => descricao = value,
                 keyboardType: TextInputType.text,
@@ -48,9 +48,9 @@ class UsuarioCadastro extends StatelessWidget {
               ),
             ),
 
-            Padding(padding: EdgeInsets.all(15),
+            Padding(padding: const EdgeInsets.all(15),
               child: TextFormField(
-                onChanged: (value) => nome = value,
+                onChanged: (value) => ataque = double.parse(value),
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   label: Text("Ataque:"),
@@ -59,9 +59,9 @@ class UsuarioCadastro extends StatelessWidget {
               ),
             ),
 
-            Padding(padding: EdgeInsets.all(15),
+            Padding(padding: const EdgeInsets.all(15),
               child: TextFormField(
-                onChanged: (value) => nome = value,
+                onChanged: (value) => defesa = double.parse(value),
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   label: Text("Defesa:"),
@@ -70,9 +70,9 @@ class UsuarioCadastro extends StatelessWidget {
               ),
             ),
 
-            Padding(padding: EdgeInsets.all(15),
+            Padding(padding: const EdgeInsets.all(15),
               child: TextFormField(
-                onChanged: (value) => nome = value,
+                onChanged: (value) => agilidade = double.parse(value),
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   label: Text("Agilidade:"),
@@ -81,13 +81,13 @@ class UsuarioCadastro extends StatelessWidget {
               ),
             ),
 
-            Padding(padding: EdgeInsets.all(15),
+            Padding(padding: const EdgeInsets.all(15),
               child: TextFormField(
-                onChanged: (value) => nome = value,
+                onChanged: (value) => mana = int.parse(value),
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   label: Text("Mana:"),
-                  hintText: "Ex: 0.0",
+                  hintText: "Ex: 0",
                 ),
               ),
             ),
