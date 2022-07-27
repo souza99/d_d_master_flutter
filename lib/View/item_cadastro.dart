@@ -8,8 +8,8 @@ class ItemCadastro extends StatelessWidget {
   ItemCadastro({Key? key}) : super(key: key);
 
   late int? id = null;
-  late String descricao = '';
   late String nome = '';
+  late String descricao = '';
   late double ataque = 0.0;
   late double defesa = 0.0;
   late double agilidade = 0.0;
@@ -18,6 +18,20 @@ class ItemCadastro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var argumento = ModalRoute.of(context)?.settings.arguments;
+
+    if (argumento != null) {
+      Map<String, Object?> item = argumento as Map<String, Object?>;
+      id = item['id'] as int;
+      nome = item['nome'] as String;
+      descricao = item['descricao'] as String;
+      ataque = item['ataque'] as double;
+      defesa = item['defesa'] as double;
+      agilidade = item['agilidade'] as double;
+      mana = item['mana'] as int;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cadastro de Item", textAlign: TextAlign.center,),
@@ -30,6 +44,7 @@ class ItemCadastro extends StatelessWidget {
               child: TextFormField(
                 onChanged: (value) => nome = value,
                 keyboardType: TextInputType.text,
+                initialValue: nome,
                 decoration: const InputDecoration(
                   label: Text("Nome:"),
                   hintText: "Ex: Espada longa",
@@ -41,6 +56,7 @@ class ItemCadastro extends StatelessWidget {
               child: TextFormField(
                 onChanged: (value) => descricao = value,
                 keyboardType: TextInputType.text,
+                initialValue: descricao,
                 decoration: const InputDecoration(
                   label: Text("Descricao:"),
                   hintText: "Ex: Espada com uma lamina longa",
@@ -52,6 +68,7 @@ class ItemCadastro extends StatelessWidget {
               child: TextFormField(
                 onChanged: (value) => ataque = double.parse(value),
                 keyboardType: TextInputType.text,
+                initialValue: ataque.toString(),
                 decoration: const InputDecoration(
                   label: Text("Ataque:"),
                   hintText: "Ex: 15.0",
@@ -63,6 +80,7 @@ class ItemCadastro extends StatelessWidget {
               child: TextFormField(
                 onChanged: (value) => defesa = double.parse(value),
                 keyboardType: TextInputType.text,
+                initialValue: defesa.toString(),
                 decoration: const InputDecoration(
                   label: Text("Defesa:"),
                   hintText: "Ex: 5.0",
@@ -74,6 +92,7 @@ class ItemCadastro extends StatelessWidget {
               child: TextFormField(
                 onChanged: (value) => agilidade = double.parse(value),
                 keyboardType: TextInputType.text,
+                initialValue: agilidade.toString(),
                 decoration: const InputDecoration(
                   label: Text("Agilidade:"),
                   hintText: "Ex: -7.0",
@@ -85,6 +104,7 @@ class ItemCadastro extends StatelessWidget {
               child: TextFormField(
                 onChanged: (value) => mana = int.parse(value),
                 keyboardType: TextInputType.text,
+                initialValue: mana.toString(),
                 decoration: const InputDecoration(
                   label: Text("Mana:"),
                   hintText: "Ex: 0",

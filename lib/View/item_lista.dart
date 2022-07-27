@@ -25,6 +25,7 @@ class _ListaItemState extends State<ListaItem> {
                 onPressed: () {
                   Sqlite.Sqflite.deletarItem(id);
                   Navigator.pop(context);
+                  setState(() {});
                 },
               ),
               ElevatedButton(
@@ -48,7 +49,9 @@ class _ListaItemState extends State<ListaItem> {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () =>
-                  Navigator.pushNamed(context, '/itemCadastro', arguments: null),
+                  Navigator.pushNamed(context, '/itemCadastro', arguments: null).then((value) {
+                    setState(() {});
+                  }),
             )
           ],
         ),
@@ -83,8 +86,10 @@ class _ListaItemState extends State<ListaItem> {
                           icon: const Icon(Icons.edit),
                           color: Colors.amber,
                           onPressed: () => Navigator.pushNamed(
-                              context, '/formItem',
-                              arguments: item),
+                              context, '/itemCadastro',
+                              arguments: item).then((value) {
+                                setState(() {});
+                              }),
                         ),
                         IconButton(
                           icon: const Icon(Icons.delete),

@@ -1,11 +1,9 @@
-import 'package:rpg_d_d_flutter/View/calcular_idade.dart';
-import 'package:rpg_d_d_flutter/View/hello_world.dart';
-import 'package:rpg_d_d_flutter/View/calculadora.dart';
 import 'package:rpg_d_d_flutter/View/item_cadastro.dart';
 import 'package:rpg_d_d_flutter/View/item_lista.dart';
-import 'package:rpg_d_d_flutter/View/menu.dart';
+import 'package:rpg_d_d_flutter/View/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:rpg_d_d_flutter/View/menu.dart';
 import 'package:rpg_d_d_flutter/View/usuario_cadastro.dart';
 import '../Model/sqflite/Sqlite.dart' as Sqlite;
 
@@ -31,10 +29,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        "/": (context) => Menu(),
-        "/calcularIdade": (context) => CalcularIdade(),
-        "/helloWorld": (context) => HelloWorld(),
-        "/calculadora": (context) => Calculadora(),
+        "/": (context) => Login(),
+        "/menuPrincipal": (context) => Menu(),
         "/usuarioCadastro": (context) => UsuarioCadastro(),
         "/salvarPersonagem": (context) => PersonagemCadastro(),
         "/itemCadastro": (context) => ItemCadastro(),

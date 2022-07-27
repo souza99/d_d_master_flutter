@@ -15,7 +15,7 @@ class Sqflite {
   //Item
   static String item = "item";
   static String criarItem = '''CREATE TABLE item(id INTEGER PRIMARY KEY, nome TEXT,
-   descricao TEXT, ataque DOUBLE, defesa DOUBLE, agilidade DOUBLE, mana DOUBLE, predefinicao BOOLEAN)''';
+   descricao TEXT, ataque DOUBLE, defesa DOUBLE, agilidade DOUBLE, mana INTEGER, predefinicao BOOLEAN)''';
   static String insertItem =
       "INSERT INTO item (nome, descricao, ataque, defesa, agilidade, mana, predefinicao) VALUES (?,?,?,?,?,?,?)";
   static String updateItem =
