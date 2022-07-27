@@ -4,9 +4,6 @@ import 'package:sqflite/sqflite.dart';
 class Sqflite {
   static Database? _db;
 
-  //Metodos base
-  static String deleteTable = "DELETE FROM ? WHERE id = ?";
-
   //Usuario
   static String usuario = "usuario";
   static String criarUsuario = "CREATE TABLE usuario(id INTEGER PRIMARY KEY, nome TEXT, telefone TEXT, email TEXT, senha TEXT)";
@@ -27,7 +24,7 @@ class Sqflite {
   //Personagem
   static String personagem = "personagem";
   static String criarPersonagem =
-      "CREAT TABLE personagem(id,nome,nivel,vida,classe_id)";
+      "CREAT TABLE personagem(id INTEGER PRIMARY KEY, nome TEXT, nivel INTEGER, vida INTEGER, classe_id INTEGER)";
   static String inserirPersonagem =
       "INSERT INTO personagem (nome, nivel, vida, classe_id) VALUES (?,?,?,?)";
   static String atualizarpersonagem =
@@ -69,8 +66,8 @@ class Sqflite {
 
     if (id != null) {
       String sql;
-      sql = deleteTable;
-      _db?.rawDelete(sql, [usuario, id]);
+      sql = "DELETE FROM usuario WHERE id = ?";
+      _db?.rawDelete(sql, [id]);
     }
   }
 
@@ -100,8 +97,8 @@ class Sqflite {
 
     if (id != null) {
       String sql;
-      sql = deleteTable;
-      _db?.rawDelete(sql, [item, id]);
+      sql = "DELETE FROM item WHERE id = ?";
+      _db?.rawDelete(sql, [id]);
     }
   }
 
@@ -128,16 +125,16 @@ class Sqflite {
 
     if (id != null) {
       String sql;
-      sql = deleteTable;
-      _db?.rawDelete(sql, [item, id]);
+      sql = "DELETE FROM personagem WHERE id = ?";
+      _db?.rawDelete(sql, [id]);
     }
   }
 
-  static Future<List<Map<String, Object?>>> buscarDadosItem() async {
+  static Future<List<Map<String, Object?>>?> buscarDadosItem() async {
 
     get();
 
-    List<Map<String, Object?>> lista = await _db.rawQuery('SELECT * FROM ?', [item]);
+    List<Map<String, Object?>>? lista = await _db?.rawQuery('SELECT * FROM item');
     return lista;
   }
 

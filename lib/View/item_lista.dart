@@ -3,9 +3,15 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../Model/sqflite/Sqlite.dart' as Sqlite;
 
-class ListaItem extends StatelessWidget {
+class ListaItem extends StatefulWidget {
+  const ListaItem({Key? key}) : super(key: key);
 
+  @override
+  _ListaItemState createState() => _ListaItemState();
+}
 
+class _ListaItemState extends State<ListaItem> {
+  var key = const ListaItem().key;
 
   mostrarDialog(BuildContext context, int id) {
     showDialog(
@@ -55,7 +61,7 @@ class ListaItem extends StatelessWidget {
 
 
           builder: (context,
-              AsyncSnapshot<List<Map<String, Object?>>> dadosFuturos) {
+              AsyncSnapshot<List<Map<String, Object?>>?> dadosFuturos) {
             //Caso a consulta ainda não tenha retornado os dados vai ser mostrado
             // o spinner de carregando
             if (!dadosFuturos.hasData) {
@@ -96,3 +102,4 @@ class ListaItem extends StatelessWidget {
         ));
   }
 }
+
