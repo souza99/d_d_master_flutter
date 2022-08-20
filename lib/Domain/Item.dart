@@ -32,16 +32,16 @@ class Item {
     _ataque = ataque;
   }
 
-  double get defeza => _defesa;
+  double get defesa => _defesa;
 
-  set defeza(double defeza) {
-    _defesa = defeza;
+  set defesa(double defesa) {
+    _defesa = defesa;
   }
 
-  double get agiliade => _agilidade;
+  double get agilidade => _agilidade;
 
-  set agiliade(double agiliade) {
-    _agilidade = agiliade;
+  set agilidade(double agilidade) {
+    _agilidade = agilidade;
   }
 
   int get mana => _mana;

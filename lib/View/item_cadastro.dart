@@ -129,7 +129,6 @@ class ItemCadastro extends StatelessWidget {
         ),
       )
     );
-    throw UnimplementedError();
   }
 
 }

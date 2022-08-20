@@ -85,17 +85,6 @@ class PersonagemCadastro extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(15),
-                child: TextFormField(
-                  onChanged: (value) => classe_id = int.tryParse(value),
-                  keyboardType: TextInputType.multiline,
-                  decoration: const InputDecoration(
-                    label: Text("Senha:"),
-                    hintText: "Ex: 123456",
-                  ),
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.all(15),
                 child: ElevatedButton(
                   child: const Text("Salvar"),
@@ -112,6 +101,5 @@ class PersonagemCadastro extends StatelessWidget {
             ],
           ),
         ));
-    throw UnimplementedError();
   }
 }

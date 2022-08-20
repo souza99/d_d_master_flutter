@@ -28,7 +28,16 @@ class Sqflite {
   static String inserirPersonagem =
       "INSERT INTO personagem (nome, nivel, vida, classe_id) VALUES (?,?,?,?)";
   static String atualizarpersonagem =
-      "UPDATE personagem SET nome = ?, nivel = ?, vida = ?, classe = ?";
+      "UPDATE personagem SET nome = ?, nivel = ?, vida = ?, classe = ? WHERE id = ?";
+
+  //Classe
+  static String classe = "classe";
+  static String criarClasse =
+      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidade INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER,)";
+  static String insertClasse =
+      "INSERT INTO classe (nome, habilidade, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?)";
+  static String updateClasse =
+      "UPDATE classe SET nome = ?, habilidade = ?, ataque = ?, defesa = ?, vida = ?, agilidade = ?, mana = ? WHERE id = ?";
 
   static Future<Database?> get() async {
     if (_db == null) {
@@ -137,5 +146,35 @@ class Sqflite {
     List<Map<String, Object?>>? lista = await _db?.rawQuery('SELECT * FROM item');
     return lista;
   }
+
+  // static Future<int?> salvarClasse(String nome, int classe, double ataque,
+  //     double defesa, double vida, double agilidade, int mana, bool predefinicao,
+  //     [int? id]) async {
+  //   get();
+
+  //   String sql;
+  //   Future<int>? linhasAfetadas;
+  //   if (id == null) {
+  //     sql = insertItem;
+  //     linhasAfetadas = _db?.rawInsert(sql,
+  //         [nome, descricao, ataque, defesa, agilidade, mana, predefinicao]);
+  //   } else {
+  //     sql = updateItem;
+  //     linhasAfetadas = _db?.rawUpdate(sql,
+  //         [nome, descricao, ataque, defesa, agilidade, mana, predefinicao, id]);
+  //   }
+
+  //   return linhasAfetadas;
+  // }
+
+  // static Future<void> deletarItem([int? id]) async {
+  //   get();
+
+  //   if (id != null) {
+  //     String sql;
+  //     sql = "DELETE FROM item WHERE id = ?";
+  //     _db?.rawDelete(sql, [id]);
+  //   }
+  // }
 
 }

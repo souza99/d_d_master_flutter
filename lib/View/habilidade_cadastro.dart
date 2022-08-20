@@ -86,18 +86,6 @@ class HabilidadeCadastro extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(15),
-                child: TextFormField(
-                  //verifica se é boolean para salvar o tipo padrao de abilidade
-                  onChanged: (value) => padrao = value as bool?,
-                  keyboardType: TextInputType.multiline,
-                  decoration: const InputDecoration(
-                    label: Text("Senha:"),
-                    hintText: "Ex: 123456",
-                  ),
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.all(15),
                 child: ElevatedButton(
                   child: const Text("Salvar"),
@@ -114,6 +102,5 @@ class HabilidadeCadastro extends StatelessWidget {
             ],
           ),
         ));
-    throw UnimplementedError();
   }
 }

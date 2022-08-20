@@ -3,9 +3,9 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../Model/sqflite/Sqlite.dart' as Sqlite;
 
-class UsuarioCadastro extends StatelessWidget {
+class ClasseCadastro extends StatelessWidget {
 
-  UsuarioCadastro({Key? key}) : super(key: key);
+  ClasseCadastro({Key? key}) : super(key: key);
 
   late int? id;
   late String nome;
@@ -20,7 +20,7 @@ class UsuarioCadastro extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cadastro de Usuario", textAlign: TextAlign.center,),
+        title: const Text("Cadastro de Classe", textAlign: TextAlign.center,),
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
@@ -77,7 +77,7 @@ class UsuarioCadastro extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
                 ),
                 onPressed: () {
-                  Sqlite.Sqflite.salvarUsuario(nome, telefone, email, senha, id);
+                  // Sqlite.Sqflite.salvarClasse(nome, telefone, email, senha, id);
                   Navigator.pop(context);
                 },
               ),
