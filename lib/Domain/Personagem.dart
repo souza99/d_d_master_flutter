@@ -8,7 +8,7 @@ class Personagem {
   late String _nome;
   late int _nivel;
   late double _vida;
-  late List<Item> _iventario;
+  late List<Item> _inventario;
   late Classe _classe;
 
   int get id => _id;
@@ -35,9 +35,9 @@ class Personagem {
     _vida = vida;
   }
 
-  List<Item> get item => _iventario;
+  List<Item> get item => _inventario;
 
   set item(List<Item> item) {
-    _iventario = item;
+    _inventario = item;
   }
 }

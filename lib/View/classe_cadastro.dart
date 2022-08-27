@@ -13,7 +13,7 @@ class ClasseCadastro extends StatelessWidget {
   late String email;
   late String senha;
 
-
+//https://pub.dev/packages/multiselect_formfield Link multselect
 
 
   @override

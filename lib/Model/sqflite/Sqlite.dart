@@ -6,7 +6,8 @@ class Sqflite {
 
   //Usuario
   static String usuario = "usuario";
-  static String criarUsuario = "CREATE TABLE usuario(id INTEGER PRIMARY KEY, nome TEXT, telefone TEXT, email TEXT, senha TEXT)";
+  static String criarUsuario =
+      "CREATE TABLE usuario(id INTEGER PRIMARY KEY, nome TEXT, telefone TEXT, email TEXT, senha TEXT)";
   static String insertUsuario =
       "INSERT INTO usuario (nome, telefone, email, senha) VALUES (?,?,?,?)";
   static String updateUsuario =
@@ -14,7 +15,8 @@ class Sqflite {
 
   //Item
   static String item = "item";
-  static String criarItem = '''CREATE TABLE item(id INTEGER PRIMARY KEY, nome TEXT,
+  static String criarItem =
+      '''CREATE TABLE item(id INTEGER PRIMARY KEY, nome TEXT,
    descricao TEXT, ataque DOUBLE, defesa DOUBLE, agilidade DOUBLE, mana INTEGER, predefinicao BOOLEAN)''';
   static String insertItem =
       "INSERT INTO item (nome, descricao, ataque, defesa, agilidade, mana, predefinicao) VALUES (?,?,?,?,?,?,?)";
@@ -33,11 +35,11 @@ class Sqflite {
   //Classe
   static String classe = "classe";
   static String criarClasse =
-      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidade INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER,)";
+      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidades INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER,)";
   static String insertClasse =
-      "INSERT INTO classe (nome, habilidade, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?)";
+      "INSERT INTO classe (nome, habilidades, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?)";
   static String updateClasse =
-      "UPDATE classe SET nome = ?, habilidade = ?, ataque = ?, defesa = ?, vida = ?, agilidade = ?, mana = ? WHERE id = ?";
+      "UPDATE classe SET nome = ?, habilidades = ?, ataque = ?, defesa = ?, vida = ?, agilidade = ?, mana = ? WHERE id = ?";
 
   static Future<Database?> get() async {
     if (_db == null) {
@@ -70,7 +72,6 @@ class Sqflite {
   }
 
   static Future<void> deletarUsuario([int? id]) async {
-
     get();
 
     if (id != null) {
@@ -101,7 +102,6 @@ class Sqflite {
   }
 
   static Future<void> deletarItem([int? id]) async {
-
     get();
 
     if (id != null) {
@@ -140,41 +140,40 @@ class Sqflite {
   }
 
   static Future<List<Map<String, Object?>>?> buscarDadosItem() async {
-
     get();
 
-    List<Map<String, Object?>>? lista = await _db?.rawQuery('SELECT * FROM item');
+    List<Map<String, Object?>>? lista =
+        await _db?.rawQuery('SELECT * FROM item');
     return lista;
   }
 
-  // static Future<int?> salvarClasse(String nome, int classe, double ataque,
-  //     double defesa, double vida, double agilidade, int mana, bool predefinicao,
-  //     [int? id]) async {
-  //   get();
+  static Future<int?> salvarClasse(String nome, List<int> habilidades, double ataque,
+      double defesa, double vida, double agilidade, int mana, bool predefinicao,
+      [int? id]) async {
+    get();
 
-  //   String sql;
-  //   Future<int>? linhasAfetadas;
-  //   if (id == null) {
-  //     sql = insertItem;
-  //     linhasAfetadas = _db?.rawInsert(sql,
-  //         [nome, descricao, ataque, defesa, agilidade, mana, predefinicao]);
-  //   } else {
-  //     sql = updateItem;
-  //     linhasAfetadas = _db?.rawUpdate(sql,
-  //         [nome, descricao, ataque, defesa, agilidade, mana, predefinicao, id]);
-  //   }
+    String sql;
+    Future<int>? linhasAfetadas;
+    if (id == null) {
+      sql = insertItem;
+      linhasAfetadas = _db?.rawInsert(sql,
+          [nome, habilidades, ataque, defesa, agilidade, mana, predefinicao]);
+    } else {
+      sql = updateItem;
+      linhasAfetadas = _db?.rawUpdate(sql,
+          [nome, habilidades, ataque, defesa, agilidade, mana, predefinicao, id]);
+    }
 
-  //   return linhasAfetadas;
-  // }
+    return linhasAfetadas;
+  }
 
-  // static Future<void> deletarItem([int? id]) async {
-  //   get();
+  static Future<void> deletarClasse([int? id]) async {
+    get();
 
-  //   if (id != null) {
-  //     String sql;
-  //     sql = "DELETE FROM item WHERE id = ?";
-  //     _db?.rawDelete(sql, [id]);
-  //   }
-  // }
-
+    if (id != null) {
+      String sql;
+      sql = "DELETE FROM item WHERE id = ?";
+      _db?.rawDelete(sql, [id]);
+    }
+  }
 }
