@@ -35,11 +35,20 @@ class Sqflite {
   //Classe
   static String classe = "classe";
   static String criarClasse =
-      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidades INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER,)";
+      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidade INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER,)";
   static String insertClasse =
-      "INSERT INTO classe (nome, habilidades, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?)";
+      "INSERT INTO classe (nome, habilidade, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?)";
   static String updateClasse =
-      "UPDATE classe SET nome = ?, habilidades = ?, ataque = ?, defesa = ?, vida = ?, agilidade = ?, mana = ? WHERE id = ?";
+      "UPDATE classe SET nome = ?, habilidade = ?, ataque = ?, defesa = ?, vida = ?, agilidade = ?, mana = ? WHERE id = ?";
+
+  //Classe
+  static String habilidade = "habilidade";
+  static String criarHabilidade =
+      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, descricao TEXT, tipo TEXT, porcentagem DOUBLE, padrao BOOLEAN)";
+  static String insertHabilidade =
+      "INSERT INTO classe (nome, descricao, tipo, porcentagem, padrao) VALUES (?,?,?,?,?)";
+  static String updateHabilidade =
+      "UPDATE classe SET nome = ?, descricao = ?, tipo = ?, porcentagem = ?, padrao = ? WHERE id = ?";
 
   static Future<Database?> get() async {
     if (_db == null) {
@@ -147,33 +156,72 @@ class Sqflite {
     return lista;
   }
 
-  static Future<int?> salvarClasse(String nome, List<int> habilidades, double ataque,
-      double defesa, double vida, double agilidade, int mana, bool predefinicao,
+  static Future<List<Map<String, Object?>>?> buscarHabilidades() async {
+    get();
+
+    List<Map<String, Object?>>? listaHabilidade =
+        await _db?.rawQuery('SELECT * FROM habilidade');
+    return listaHabilidade;
+  }
+
+  static Future<void> deletarHabilidade([int? id]) async {
+    get();
+
+    if (id != null) {
+      String sql;
+      sql = "DELETE FROM habilidade WHERE id = ?";
+      _db?.rawDelete(sql, [id]);
+    }
+  }
+
+  static Future<Future<int>?> salvarHabilidade(String nome, String descricao,
+      String tipo, double porcentagem, bool padrao,
       [int? id]) async {
     get();
 
     String sql;
     Future<int>? linhasAfetadas;
     if (id == null) {
-      sql = insertItem;
-      linhasAfetadas = _db?.rawInsert(sql,
-          [nome, habilidades, ataque, defesa, agilidade, mana, predefinicao]);
+      sql = inserirPersonagem;
+      linhasAfetadas =
+          _db?.rawInsert(sql, [nome, descricao, tipo, porcentagem, padrao]);
     } else {
-      sql = updateItem;
-      linhasAfetadas = _db?.rawUpdate(sql,
-          [nome, habilidades, ataque, defesa, agilidade, mana, predefinicao, id]);
+      sql = atualizarpersonagem;
+      linhasAfetadas =
+          _db?.rawUpdate(sql, [nome, descricao, porcentagem, padrao, id]);
     }
 
     return linhasAfetadas;
   }
 
-  static Future<void> deletarClasse([int? id]) async {
-    get();
+  // static Future<int?> salvarClasse(String nome, int classe, double ataque,
+  //     double defesa, double vida, double agilidade, int mana, bool predefinicao,
+  //     [int? id]) async {
+  //   get();
 
-    if (id != null) {
-      String sql;
-      sql = "DELETE FROM item WHERE id = ?";
-      _db?.rawDelete(sql, [id]);
-    }
-  }
+  //   String sql;
+  //   Future<int>? linhasAfetadas;
+  //   if (id == null) {
+  //     sql = insertItem;
+  //     linhasAfetadas = _db?.rawInsert(sql,
+  //         [nome, descricao, ataque, defesa, agilidade, mana, predefinicao]);
+  //   } else {
+  //     sql = updateItem;
+  //     linhasAfetadas = _db?.rawUpdate(sql,
+  //         [nome, descricao, ataque, defesa, agilidade, mana, predefinicao, id]);
+  //   }
+
+  //   return linhasAfetadas;
+  // }
+
+  // static Future<void> deletarItem([int? id]) async {
+  //   get();
+
+  //   if (id != null) {
+  //     String sql;
+  //     sql = "DELETE FROM item WHERE id = ?";
+  //     _db?.rawDelete(sql, [id]);
+  //   }
+  // }
+
 }
