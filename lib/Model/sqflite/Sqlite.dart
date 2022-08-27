@@ -41,6 +41,15 @@ class Sqflite {
   static String updateClasse =
       "UPDATE classe SET nome = ?, habilidade = ?, ataque = ?, defesa = ?, vida = ?, agilidade = ?, mana = ? WHERE id = ?";
 
+  //Classe
+  static String habilidade = "habilidade";
+  static String criarHabilidade =
+      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, descricao TEXT, tipo TEXT, porcentagem DOUBLE, padrao BOOLEAN)";
+  static String insertHabilidade =
+      "INSERT INTO classe (nome, descricao, tipo, porcentagem, padrao) VALUES (?,?,?,?,?)";
+  static String updateHabilidade =
+      "UPDATE classe SET nome = ?, descricao = ?, tipo = ?, porcentagem = ?, padrao = ? WHERE id = ?";
+
   static Future<Database?> get() async {
     if (_db == null) {
       var path = join(await getDatabasesPath(), 'bancosqlf.db');
@@ -163,6 +172,26 @@ class Sqflite {
       sql = "DELETE FROM habilidade WHERE id = ?";
       _db?.rawDelete(sql, [id]);
     }
+  }
+
+  static Future<Future<int>?> salvarHabilidade(String nome, String descricao,
+      String tipo, double porcentagem, bool padrao,
+      [int? id]) async {
+    get();
+
+    String sql;
+    Future<int>? linhasAfetadas;
+    if (id == null) {
+      sql = inserirPersonagem;
+      linhasAfetadas =
+          _db?.rawInsert(sql, [nome, descricao, tipo, porcentagem, padrao]);
+    } else {
+      sql = atualizarpersonagem;
+      linhasAfetadas =
+          _db?.rawUpdate(sql, [nome, descricao, porcentagem, padrao, id]);
+    }
+
+    return linhasAfetadas;
   }
 
   // static Future<int?> salvarClasse(String nome, int classe, double ataque,

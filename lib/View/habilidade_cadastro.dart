@@ -12,9 +12,10 @@ class HabilidadeCadastro extends StatelessWidget {
   late String? tipo;
   late double? porcentagem;
   late bool? padrao;
+  late String? nome;
 
-  Future<int> salvarHabilidade(
-      String nome, String descricao, String tipo, double porcentagem, bool padrao,
+  Future<int> salvarHabilidade(String nome, String descricao, String tipo,
+      double porcentagem, bool padrao,
       [int? id]) async {
     String caminho = join(await getDatabasesPath(), 'banco');
     Database banco = await openDatabase(caminho, version: 1);
@@ -31,9 +32,9 @@ class HabilidadeCadastro extends StatelessWidget {
     // atualiza o valor no banco
     else {
       sql =
-          'UPDATE personagem SET descricao = ?, tipo = ?, porcentagem = ?, padrao = ? WHERE id = ?';
-      linhasAfetadas =
-          banco.rawUpdate(sql, [descricao, tipo, porcentagem, padrao, id]);
+          'UPDATE habilidade SET nome = ? descricao = ?, tipo = ?, porcentagem = ?, padrao = ? WHERE id = ?';
+      linhasAfetadas = banco
+          .rawUpdate(sql, [nome, descricao, tipo, porcentagem, padrao, id]);
     }
     return linhasAfetadas;
   }
@@ -51,6 +52,17 @@ class HabilidadeCadastro extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Padding(
+                padding: EdgeInsets.all(15),
+                child: TextFormField(
+                  onChanged: (value) => nome = value,
+                  keyboardType: TextInputType.text,
+                  decoration: const InputDecoration(
+                    label: Text("Nome:"),
+                    hintText: "Ex: Ataque furioso.",
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.all(15),
                 child: TextFormField(
@@ -94,7 +106,8 @@ class HabilidadeCadastro extends StatelessWidget {
                         MaterialStateProperty.all<Color>(Colors.green),
                   ),
                   onPressed: () {
-                    salvarHabilidade(descricao!, tipo!, porcentagem!, padrao!);
+                    salvarHabilidade(
+                        nome!, descricao!, tipo!, porcentagem!, padrao!);
                     Navigator.pop(context);
                   },
                 ),
