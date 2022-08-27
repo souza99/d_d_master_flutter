@@ -6,7 +6,8 @@ class Sqflite {
 
   //Usuario
   static String usuario = "usuario";
-  static String criarUsuario = "CREATE TABLE usuario(id INTEGER PRIMARY KEY, nome TEXT, telefone TEXT, email TEXT, senha TEXT)";
+  static String criarUsuario =
+      "CREATE TABLE usuario(id INTEGER PRIMARY KEY, nome TEXT, telefone TEXT, email TEXT, senha TEXT)";
   static String insertUsuario =
       "INSERT INTO usuario (nome, telefone, email, senha) VALUES (?,?,?,?)";
   static String updateUsuario =
@@ -14,7 +15,8 @@ class Sqflite {
 
   //Item
   static String item = "item";
-  static String criarItem = '''CREATE TABLE item(id INTEGER PRIMARY KEY, nome TEXT,
+  static String criarItem =
+      '''CREATE TABLE item(id INTEGER PRIMARY KEY, nome TEXT,
    descricao TEXT, ataque DOUBLE, defesa DOUBLE, agilidade DOUBLE, mana INTEGER, predefinicao BOOLEAN)''';
   static String insertItem =
       "INSERT INTO item (nome, descricao, ataque, defesa, agilidade, mana, predefinicao) VALUES (?,?,?,?,?,?,?)";
@@ -70,7 +72,6 @@ class Sqflite {
   }
 
   static Future<void> deletarUsuario([int? id]) async {
-
     get();
 
     if (id != null) {
@@ -101,7 +102,6 @@ class Sqflite {
   }
 
   static Future<void> deletarItem([int? id]) async {
-
     get();
 
     if (id != null) {
@@ -140,11 +140,29 @@ class Sqflite {
   }
 
   static Future<List<Map<String, Object?>>?> buscarDadosItem() async {
-
     get();
 
-    List<Map<String, Object?>>? lista = await _db?.rawQuery('SELECT * FROM item');
+    List<Map<String, Object?>>? lista =
+        await _db?.rawQuery('SELECT * FROM item');
     return lista;
+  }
+
+  static Future<List<Map<String, Object?>>?> buscarHabilidades() async {
+    get();
+
+    List<Map<String, Object?>>? listaHabilidade =
+        await _db?.rawQuery('SELECT * FROM habilidade');
+    return listaHabilidade;
+  }
+
+  static Future<void> deletarHabilidade([int? id]) async {
+    get();
+
+    if (id != null) {
+      String sql;
+      sql = "DELETE FROM habilidade WHERE id = ?";
+      _db?.rawDelete(sql, [id]);
+    }
   }
 
   // static Future<int?> salvarClasse(String nome, int classe, double ataque,

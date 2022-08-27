@@ -1,9 +1,9 @@
-
 class Habilidade {
   late String _descricao;
   late String _tipo;
   late double _porcentagem;
   late bool _padrao;
+  late String _nome;
 
   String get descricao => _descricao;
 
@@ -28,5 +28,10 @@ class Habilidade {
   set padrao(bool padrao) {
     _padrao = padrao;
   }
-  
+
+  String get nome => _nome;
+
+  set nome(String nome) {
+    _nome = nome;
+  }
 }

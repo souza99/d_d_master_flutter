@@ -14,7 +14,7 @@ class HabilidadeCadastro extends StatelessWidget {
   late bool? padrao;
 
   Future<int> salvarHabilidade(
-      String descricao, String tipo, double porcentagem, bool padrao,
+      String nome, String descricao, String tipo, double porcentagem, bool padrao,
       [int? id]) async {
     String caminho = join(await getDatabasesPath(), 'banco');
     Database banco = await openDatabase(caminho, version: 1);
@@ -24,9 +24,9 @@ class HabilidadeCadastro extends StatelessWidget {
     //Insere no banco
     if (id == null) {
       sql =
-          'INSERT INTO habilidade (descricao, tipo, porcentagem, padrao) VALUES (?,?,?,?)';
+          'INSERT INTO habilidade (nome, descricao, tipo, porcentagem, padrao) VALUES (?,?,?,?,?)';
       linhasAfetadas =
-          banco.rawInsert(sql, [descricao, tipo, porcentagem, padrao]);
+          banco.rawInsert(sql, [nome, descricao, tipo, porcentagem, padrao]);
     }
     // atualiza o valor no banco
     else {
