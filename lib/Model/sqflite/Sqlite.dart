@@ -44,11 +44,11 @@ class Sqflite {
   //Classe
   static String habilidade = "habilidade";
   static String criarHabilidade =
-      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, descricao TEXT, tipo TEXT, porcentagem DOUBLE, padrao BOOLEAN)";
+      "CREATE TABLE habilidade(id INTEGER PRIMARY KEY, nome TEXT, descricao TEXT, tipo TEXT, porcentagem DOUBLE, padrao BOOLEAN)";
   static String insertHabilidade =
-      "INSERT INTO classe (nome, descricao, tipo, porcentagem, padrao) VALUES (?,?,?,?,?)";
+      "INSERT INTO habilidade (nome, descricao, tipo, porcentagem, padrao) VALUES (?,?,?,?,?)";
   static String updateHabilidade =
-      "UPDATE classe SET nome = ?, descricao = ?, tipo = ?, porcentagem = ?, padrao = ? WHERE id = ?";
+      "UPDATE habilidade SET nome = ?, descricao = ?, tipo = ?, porcentagem = ?, padrao = ? WHERE id = ?";
 
   static Future<Database?> get() async {
     if (_db == null) {
@@ -57,6 +57,7 @@ class Sqflite {
       _db = await openDatabase(path, version: 1, onCreate: (db, v) {
         db.execute(criarUsuario);
         db.execute(criarItem);
+        db.execute(criarHabilidade);
       });
     }
     return _db;

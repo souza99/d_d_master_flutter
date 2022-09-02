@@ -7,7 +7,7 @@ import '../Domain/Classe.dart';
 class PersonagemCadastro extends StatelessWidget {
   PersonagemCadastro({Key? key}) : super(key: key);
 
-  late int? id;
+  late int? id = null;
   late String nome;
   late int? nivel;
   late double? vida;

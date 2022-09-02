@@ -49,9 +49,10 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
           actions: [
             IconButton(
               icon: const Icon(Icons.add),
-              onPressed: () =>
-                  Navigator.pushNamed(context, '/habilidadeCadastro', arguments: null)
-                      .then((value) {
+              onPressed: () => Navigator.pushNamed(
+                      context, '/habilidadeCadastro',
+                      arguments: null)
+                  .then((value) {
                 setState(() {});
               }),
             )
