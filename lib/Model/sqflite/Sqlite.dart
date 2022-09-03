@@ -26,7 +26,7 @@ class Sqflite {
   //Personagem
   static String personagem = "personagem";
   static String criarPersonagem =
-      "CREAT TABLE personagem(id INTEGER PRIMARY KEY, nome TEXT, nivel INTEGER, vida INTEGER, classe_id INTEGER)";
+      "CREATE TABLE personagem(id INTEGER PRIMARY KEY, nome TEXT, nivel INTEGER, vida INTEGER, classe_id INTEGER)";
   static String inserirPersonagem =
       "INSERT INTO personagem (nome, nivel, vida, classe_id) VALUES (?,?,?,?)";
   static String atualizarpersonagem =
@@ -35,7 +35,7 @@ class Sqflite {
   //Classe
   static String classe = "classe";
   static String criarClasse =
-      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidade INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER,)";
+      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidade INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER)";
   static String insertClasse =
       "INSERT INTO classe (nome, habilidade, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?)";
   static String updateClasse =
@@ -58,7 +58,11 @@ class Sqflite {
         db.execute(criarUsuario);
         db.execute(criarItem);
         db.execute(criarHabilidade);
+        db.execute(criarPersonagem);
+        db.execute(criarClasse);
       });
+      _db?.rawInsert("INSERT INTO classe (id , nome, habilidade, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?,?)",
+          [1, "Mago", "Conjurador de magias excepcionais", 1,30.0, 5.0, 10.0, 60]);
     }
     return _db;
   }
@@ -163,6 +167,14 @@ class Sqflite {
     List<Map<String, Object?>>? listaHabilidade =
         await _db?.rawQuery('SELECT * FROM habilidade');
     return listaHabilidade;
+  }
+
+  static Future<List<Map<String, Object?>>?> buscarPersonagens() async {
+    get();
+
+    List<Map<String, Object?>>? listaPersonagens =
+    await _db?.rawQuery('SELECT * FROM personagem');
+    return listaPersonagens;
   }
 
   static Future<void> deletarHabilidade([int? id]) async {

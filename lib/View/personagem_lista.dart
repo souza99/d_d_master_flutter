@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
-import 'package:rpg_d_d_flutter/Domain/Habilidade.dart';
+import 'package:rpg_d_d_flutter/Domain/Personagem.dart';
 import 'package:sqflite/sqflite.dart';
 import '../Model/sqflite/Sqlite.dart' as Sqlite;
 
-class ListaHabilidade extends StatefulWidget {
-  const ListaHabilidade({Key? key}) : super(key: key);
+class ListaPersonagem extends StatefulWidget {
+  const ListaPersonagem({Key? key}) : super(key: key);
 
   @override
-  _ListaHabilidadeState createState() => _ListaHabilidadeState();
+  _ListaPersonagemState createState() => _ListaPersonagemState();
 }
 
-class _ListaHabilidadeState extends State<ListaHabilidade> {
-  var key = const ListaHabilidade().key;
+class _ListaPersonagemState extends State<ListaPersonagem> {
+  var key = const ListaPersonagem().key;
 
   mostrarDialog(BuildContext context, int id) {
     showDialog(
@@ -24,7 +24,7 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
               ElevatedButton(
                 child: const Text("Sim"),
                 onPressed: () {
-                  Sqlite.Sqflite.deletarHabilidade(id);
+                  Sqlite.Sqflite.deletarPersonagem(id);
                   Navigator.pop(context);
                   setState(() {});
                 },
@@ -42,7 +42,7 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Lista de Habilidades"),
+          title: const Text("Lista de Personagens"),
           backgroundColor: Colors.green,
 
           //Define as ações que podem ser realizadas na appbar
@@ -50,7 +50,7 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () => Navigator.pushNamed(
-                      context, '/habilidadeCadastro',
+                      context, '/personagemCadastro',
                       arguments: null)
                   .then((value) {
                 setState(() {});
@@ -59,9 +59,9 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
           ],
         ),
         body: FutureBuilder(
-          //busca os dados das habilidades => buscarHabilidade()
+          //busca os dados das personagens => buscarPersonagem()
           key: key,
-          future: Sqlite.Sqflite.buscarHabilidades(),
+          future: Sqlite.Sqflite.buscarPersonagens(),
 
           builder: (context,
               AsyncSnapshot<List<Map<String, Object?>>?> dadosFuturos) {
@@ -70,14 +70,14 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
             if (!dadosFuturos.hasData) {
               return const CircularProgressIndicator();
             }
-            var listaHabilidade = dadosFuturos.data!;
+            var listaPersonagem = dadosFuturos.data!;
             return ListView.builder(
-              itemCount: listaHabilidade.length,
+              itemCount: listaPersonagem.length,
               itemBuilder: (context, contador) {
-                var habilidade = listaHabilidade[contador];
+                var personagem = listaPersonagem[contador];
                 return ListTile(
-                  title: Text(habilidade['nome'].toString()),
-                  subtitle: Text(habilidade['descricao'].toString()),
+                  title: Text(personagem['nome'].toString()),
+                  subtitle: Text(personagem['vida'].toString()),
                   trailing: Container(
                     width: 100,
                     child: Row(
@@ -86,8 +86,8 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
                           icon: const Icon(Icons.edit),
                           color: Colors.amber,
                           onPressed: () => Navigator.pushNamed(
-                                  context, '/habilidadeCadastro',
-                                  arguments: habilidade)
+                                  context, '/personagemCadastro',
+                                  arguments: personagem)
                               .then((value) {
                             setState(() {});
                           }),
@@ -96,7 +96,7 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
                           icon: const Icon(Icons.delete),
                           color: Colors.red,
                           onPressed: () => mostrarDialog(
-                              context, int.parse(habilidade['id'].toString())),
+                              context, int.parse(personagem['id'].toString())),
                         ),
                       ],
                     ),
