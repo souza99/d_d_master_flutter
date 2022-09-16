@@ -64,6 +64,13 @@ class Menu extends StatelessWidget {
                             Navigator.pushNamed(context, '/listaPersonagem'),
                         child: const Text("Lista de personagem")),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: ElevatedButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, '/dado'),
+                        child: const Text("Dados")),
+                  )
                 ],
               ),
             ],
