@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'Dado/gera_valor.dart' as gareValorDado;
 
 class Dado extends StatefulWidget {
   const Dado({Key? key}) : super(key: key);
@@ -138,6 +139,9 @@ class _DadoState extends State<Dado> {
                         child: Icon(MdiIcons.dice2)),
                     MaterialButton(
                       onPressed: () {
+                        this.resultadoDados =
+                            gareValorDado.GeraValor.gareValorDado(
+                                tamanhoDado!, quantidadeDados!) as List<int>;
                         mostrarListaDados();
                       },
                       height: 45,
@@ -178,8 +182,9 @@ class _DadoState extends State<Dado> {
                               return ListTile(
                                 title: Card(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text('Dado ${index + 1}, resultado: ${resultadoDados[index]}'),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                      'Dado ${index + 1}, resultado: ${resultadoDados[index]}'),
                                 )),
                               );
                             },

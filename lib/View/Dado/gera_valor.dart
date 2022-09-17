@@ -1,7 +1,7 @@
 import 'dart:math';
 
-class geraValor {
-  List<int>? gareValorDado(int tamanhoDado, int qtdaDados) {
+class GeraValor {
+  static List<int>? gareValorDado(int tamanhoDado, int qtdaDados) {
     List<int> listaDados = [];
 
     var numeros = new Random();
