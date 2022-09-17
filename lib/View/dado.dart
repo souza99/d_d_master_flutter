@@ -184,7 +184,7 @@ class _DadoState extends State<Dado> {
                                     child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                      'Dado ${index + 1}, resultado: ${resultadoDados[index]}'),
+                                      'Dado ${index + 1}, resultado: ${resultadoDados[index] + 1}'),
                                 )),
                               );
                             },
