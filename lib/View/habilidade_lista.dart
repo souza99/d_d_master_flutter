@@ -88,9 +88,9 @@ class _ListaHabilidadeState extends State<ListaHabilidade> {
                           onPressed: () => Navigator.pushNamed(
                                   context, '/habilidadeCadastro',
                                   arguments: habilidade)
-                              .then((value) {
-                            setState(() {});
-                          }),
+                              .then((value) =>
+                            setState(() {})
+                          ),
                         ),
                         IconButton(
                           icon: const Icon(Icons.delete),

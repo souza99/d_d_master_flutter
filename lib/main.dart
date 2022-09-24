@@ -1,11 +1,13 @@
 import 'package:rpg_d_d_flutter/View/dado.dart';
 import 'package:rpg_d_d_flutter/View/habilidade_cadastro.dart';
+import 'package:rpg_d_d_flutter/View/habilidade_lista.dart';
 import 'package:rpg_d_d_flutter/View/item_cadastro.dart';
 import 'package:rpg_d_d_flutter/View/item_lista.dart';
 import 'package:rpg_d_d_flutter/View/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:rpg_d_d_flutter/View/menu.dart';
+import 'package:rpg_d_d_flutter/View/personagem_lista.dart';
 import 'package:rpg_d_d_flutter/View/usuario_cadastro.dart';
 import '../Model/sqflite/Sqlite.dart' as Sqlite;
 
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
         "/itemCadastro": (context) => ItemCadastro(),
         "/itemLista": (context) => ListaItem(),
         "/habilidadeCadastro": (context) => HabilidadeCadastro(),
+        "/habilidadeListagem": (context) => const ListaHabilidade(),
         "/personagemCadastro": (context) => PersonagemCadastro(),
+        "/listaPersonagem": (context) => const ListaPersonagem(),
         "/dado": (context) => Dado(),
       },
       // const MyHomePage(title: 'Primeiro app'),

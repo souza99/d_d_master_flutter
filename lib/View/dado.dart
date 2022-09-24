@@ -92,20 +92,20 @@ class _DadoState extends State<Dado> {
                 TextField(
                   keyboardType: TextInputType.number,
                   onChanged: (value) => quantidadeDados = int.tryParse(value),
-                  obscureText: true,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(0.0),
                     labelText: 'Quantidade de dados',
-                    hintText: 'Digite quantos dados serão lançados.',
-                    hintStyle: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.0,
-                    ),
+                    hintText:
+                    'Digite a quantidade de dados.',
                     labelStyle: const TextStyle(
                       color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
+                    ),
+                    hintStyle: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14.0,
                     ),
                     prefixIcon: const Icon(
                       MdiIcons.dice1,
@@ -114,7 +114,7 @@ class _DadoState extends State<Dado> {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Colors.grey.shade200, width: 2),
+                      BorderSide(color: Colors.grey.shade200, width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     floatingLabelStyle: const TextStyle(
@@ -123,7 +123,7 @@ class _DadoState extends State<Dado> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(color: Colors.black, width: 1.5),
+                      const BorderSide(color: Colors.black, width: 1.5),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
