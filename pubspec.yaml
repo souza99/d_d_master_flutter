@@ -42,6 +42,7 @@ dependencies:
   path:
   multiselect_formfield: ^0.1.7
   material_design_icons_flutter: ^5.0.6996
+  url_launcher: ^6.1.6
 
 dev_dependencies:
   flutter_test:
