@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_d_d_flutter/Service/UsuarioService.dart';
+import '../Service/UtilService.dart';
 
 class Login extends StatelessWidget {
   String? email;
   String? senha;
+  UtilService utilService = UtilService();
 
   Widget criarBotao(String nomeBotao, VoidCallback? acaoBotao) {
     return ElevatedButton(
@@ -11,14 +14,13 @@ class Login extends StatelessWidget {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    var primeiroBotao = ElevatedButton(
-      child: const Text("Primeiro Botão"),
-      onPressed: () {
-        print('Hello world');
-      },
-    );
+    UsuarioService usuarioService = UsuarioService();
+    late String email;
+    late String senha;
 
     return Scaffold(
         appBar: AppBar(
@@ -37,6 +39,7 @@ class Login extends StatelessWidget {
                   height: 40,
                 ),
                 TextField(
+                  onChanged: (value) => email = value,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(0.0),
@@ -76,6 +79,7 @@ class Login extends StatelessWidget {
                   height: 20,
                 ),
                 TextField(
+                  onChanged: (value) => senha = value,
                   obscureText: true,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -106,7 +110,7 @@ class Login extends StatelessWidget {
                       fontSize: 18.0,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black, width: 1.5),
+                      borderSide: const BorderSide(color: Colors.black, width: 1.5),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
@@ -116,9 +120,9 @@ class Login extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'Esqueceu a senha?',
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.black,
                             fontSize: 14.0,
                             fontWeight: FontWeight.w400),
@@ -126,13 +130,20 @@ class Login extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 MaterialButton(
-                  onPressed: () => Navigator.pushNamed(
-                      context, '/menuPrincipal',
-                      arguments: null),
+                  onPressed: () async {
+                    bool logar = await usuarioService.validarLogin(email: email, senha: senha);
+                      if (logar == true) {
+                        Navigator.pushNamed(
+                            context, '/menuPrincipal',
+                            arguments: null);
+                      } else {
+                        utilService.mostarNotificacao(context: context, mensagem: "Login incorreto, tente novamente.");
+                      }
+                    },
                   height: 45,
                   color: Colors.black,
                   child: const Text(
@@ -176,81 +187,5 @@ class Login extends StatelessWidget {
           ),
         ));
 
-    // Scaffold(
-    //   appBar: AppBar(
-    //     title: const Center(child: Text("Rpg Master")),
-    //     backgroundColor: colors.Cores().Verde(),
-    //   ),
-    //   body: Center(
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-    //         ElevatedCardExample(),
-    //         Card(),
-    //         Container(
-    //           width: 300,
-    //           child: Card(
-    //             shape: RoundedRectangleBorder(
-    //               borderRadius: BorderRadius.circular(10.0),
-    //             ),
-    //             elevation: 10,
-    //             child: SizedBox(
-    //               width: 300,
-    //               height: 150,
-    //               child: Center(
-    //                   child: Column(
-    //                 children: [
-    //                   Padding(
-    //                     padding: const EdgeInsets.all(8.0),
-    //                     child: TextFormField(
-    //                       decoration: const InputDecoration(
-    //                         label: Text("E-mail"),
-    //                         hintText: "Digite seu email",
-    //                       ),
-    //                       onChanged: (value) => email = value,
-    //                     ),
-    //                   ),
-    //                   Padding(
-    //                     padding: const EdgeInsets.all(8.0),
-    //                     child: TextFormField(
-    //                       decoration: const InputDecoration(
-    //                         label: Text("Senha"),
-    //                         hintText: "Digite sua senha",
-    //                       ),
-    //                       onChanged: (value) => senha = value,
-    //                     ),
-    //                   ),
-    //                 ],
-    //               )),
-    //             ),
-    //           ),
-    //         ),
-    //         criarBotao("Olá mundo!", () => print("Hello World")),
-    //         criarBotao("Calcular idade",
-    //             () => Navigator.pushNamed(context, "/calcularIdade")),
-    //         criarBotao("Hello World",
-    //             () => Navigator.pushNamed(context, "/helloWorld")),
-    //         criarBotao("Calculadora",
-    //             () => Navigator.pushNamed(context, "/calculadora"))
-    //       ],
-    //     ),
-    //   ));
-  }
-}
-
-class ElevatedCardExample extends StatelessWidget {
-  const ElevatedCardExample({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Card(
-        child: SizedBox(
-          width: 300,
-          height: 100,
-          child: Center(child: Text('Elevated Card')),
-        ),
-      ),
-    );
   }
 }

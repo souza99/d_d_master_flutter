@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:rpg_d_d_flutter/Domain/Usuario.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Sqflite {
@@ -53,7 +54,7 @@ class Sqflite {
   static Future<Database?> get() async {
     if (_db == null) {
       var path = join(await getDatabasesPath(), 'bancosqlf.db');
-      deleteDatabase(path);
+      // deleteDatabase(path);
       _db = await openDatabase(path, version: 1, onCreate: (db, version) {
         db.execute(criarUsuario);
         db.execute(criarItem);
@@ -206,6 +207,11 @@ class Sqflite {
     }
 
     return linhasAfetadas;
+  }
+
+  static Future<Usuario?> getUsuarioByEmail(String email) async {
+    Usuario usuario = await _db?.rawQuery('SELECT u FROM usuario u WHERE u.email = ?', [email]) as Usuario;
+    return usuario;
   }
 
   // static Future<int?> salvarClasse(String nome, int classe, double ataque,
