@@ -19,8 +19,8 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UsuarioService usuarioService = UsuarioService();
-    late String email;
-    late String senha;
+    late String email = '';
+    late String senha = '';
 
     return Scaffold(
         appBar: AppBar(

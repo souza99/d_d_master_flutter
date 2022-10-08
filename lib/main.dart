@@ -5,7 +5,7 @@ import 'package:rpg_d_d_flutter/View/item_cadastro.dart';
 import 'package:rpg_d_d_flutter/View/item_lista.dart';
 import 'package:rpg_d_d_flutter/View/login.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:rpg_d_d_flutter/View/menu.dart';
 import 'package:rpg_d_d_flutter/View/personagem_lista.dart';
 import 'package:rpg_d_d_flutter/View/usuario_cadastro.dart';
@@ -15,7 +15,7 @@ import 'View/personagem_cadastro.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   await Sqlite.Sqflite.get();
 
   runApp(const MyApp());

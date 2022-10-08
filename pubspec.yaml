@@ -36,13 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   #Firebase Model
-  cloud_firestore: ^3.1.5
+#  cloud_firestore: ^3.1.5
 
   sqflite:
   path:
   multiselect_formfield: ^0.1.7
   material_design_icons_flutter: ^5.0.6996
-  url_launcher: ^6.1.6
+  url_launcher:
 
 dev_dependencies:
   flutter_test:

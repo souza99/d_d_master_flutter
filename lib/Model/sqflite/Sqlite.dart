@@ -210,7 +210,11 @@ class Sqflite {
   }
 
   static Future<Usuario?> getUsuarioByEmail(String email) async {
-    Usuario usuario = await _db?.rawQuery('SELECT u FROM usuario u WHERE u.email = ?', [email]) as Usuario;
+    List<Map<String, Object?>>? usuarioResult = await _db?.rawQuery('SELECT * FROM usuario u WHERE u.email = ?', [email]);
+    Usuario? usuario = Usuario();
+    var user = usuarioResult?[0];
+    usuario.email = user!['email'].toString();
+    usuario.senha = user['senha'].toString();
     return usuario;
   }
 
