@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:path/path.dart';
 import 'package:rpg_d_d_flutter/Domain/Personagem.dart';
 import 'package:sqflite/sqflite.dart';
@@ -79,9 +80,22 @@ class _ListaPersonagemState extends State<ListaPersonagem> {
                   title: Text(personagem['nome'].toString()),
                   subtitle: Text(personagem['vida'].toString()),
                   trailing: Container(
-                    width: 100,
+                    width: 145,
                     child: Row(
                       children: [
+                        IconButton(
+                          icon: const Icon(MdiIcons.heart),
+                          color: Colors.green,
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context, '/dado',
+                              arguments: personagem)
+                              .then((value) {
+                            setState(() {});
+                          });
+
+                          }
+                        ),
                         IconButton(
                           icon: const Icon(Icons.edit),
                           color: Colors.amber,

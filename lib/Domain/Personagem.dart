@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'Classe.dart';
 import 'Item.dart';
 
@@ -9,7 +7,7 @@ class Personagem {
   late int _nivel;
   late double _vida;
   late List<Item> _inventario;
-  late Classe _classe;
+  late int _classe_id;
 
   int get id => _id;
 
@@ -39,5 +37,11 @@ class Personagem {
 
   set item(List<Item> item) {
     _inventario = item;
+  }
+
+  int get classe_id => _classe_id;
+
+  set classe_id(int classe_id) {
+    _classe_id = classe_id;
   }
 }

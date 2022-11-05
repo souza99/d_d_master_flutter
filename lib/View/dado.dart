@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:rpg_d_d_flutter/Domain/Personagem.dart';
+import 'package:rpg_d_d_flutter/View/Dado/calcula_dano_no_personagem.dart';
 import 'Dado/gera_valor.dart' as gareValorDado;
+import '../View/Dado/calcula_dano_no_personagem.dart' as calcularDano;
 
 class Dado extends StatefulWidget {
   const Dado({Key? key}) : super(key: key);
@@ -17,6 +20,13 @@ class _DadoState extends State<Dado> {
   List<int> resultadoDados = [];
   bool _mostrandoResultado = false;
 
+  late int? id = null;
+  late String nome = '';
+  late int nivel = 0;
+  late int vida = 0;
+  late int classe_id = 1;
+  late Personagem personagem;
+
   void mostrarListaDados() {
     setState(() {
       _mostrandoResultado = !_mostrandoResultado;
@@ -25,6 +35,18 @@ class _DadoState extends State<Dado> {
 
   @override
   Widget build(BuildContext context) {
+
+    var argumento = ModalRoute.of(context)?.settings.arguments;
+
+    if (argumento != null) {
+      Map<String, Object?> personagem = argumento as Map<String, Object?>;
+      this.personagem.id = personagem['id'] as int;
+      this.personagem.nome = personagem['nome'] as String;
+      this.personagem.nivel = personagem['nivel'] as int;
+      this.personagem.vida = personagem['vida'] as double;
+      this.personagem.classe_id = personagem['classe_id'] as int;
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.green,
@@ -179,6 +201,7 @@ class _DadoState extends State<Dado> {
                             shrinkWrap: true,
                             itemCount: resultadoDados.length,
                             itemBuilder: (BuildContext context, int index) {
+                              calcularDano.calculaDano.calcularVida(personagem, resultadoDados);
                               return ListTile(
                                 title: Card(
                                     child: Padding(
@@ -189,6 +212,7 @@ class _DadoState extends State<Dado> {
                               );
                             },
                           ),
+
                         )
                       ],
                     )),
