@@ -9,7 +9,9 @@ class calculaDano {
     dados.forEach((element) {
       valor = valor + element;
     });
-    double media = valor/dados.length;
+    String mediaString = (valor/dados.length).toString();
+    var lista = mediaString.split('.');
+    int media = int.parse(lista[0]);
     personagem.vida = personagem.vida - media;
     Sqflite.salvarPersonagem(personagem.nome, personagem.nivel, personagem.vida as int, 1, personagem.id);
   }

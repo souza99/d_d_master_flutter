@@ -6,7 +6,7 @@ class Classe {
   late List<Habilidade> _habilidades;
   late double _ataque;
   late double _defesa;
-  late double _vida;
+  late int _vida;
   late double _agilidade;
   late int _mana;
   late bool _predefinido;
@@ -33,6 +33,12 @@ class Classe {
 
   set ataque(double ataque) {
     _ataque = ataque;
+  }
+
+  int get vida => _vida;
+
+  set vida(int vida) {
+    _vida = vida;
   }
 
   double get defesa => _defesa;

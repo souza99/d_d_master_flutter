@@ -25,7 +25,7 @@ class _DadoState extends State<Dado> {
   late int nivel = 0;
   late int vida = 0;
   late int classe_id = 1;
-  late Personagem personagem;
+  late Personagem personagem = Personagem();
 
   void mostrarListaDados() {
     setState(() {
@@ -43,7 +43,7 @@ class _DadoState extends State<Dado> {
       this.personagem.id = personagem['id'] as int;
       this.personagem.nome = personagem['nome'] as String;
       this.personagem.nivel = personagem['nivel'] as int;
-      this.personagem.vida = personagem['vida'] as double;
+      this.personagem.vida = personagem['vida'] as int;
       this.personagem.classe_id = personagem['classe_id'] as int;
     }
 

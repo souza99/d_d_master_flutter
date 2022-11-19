@@ -36,7 +36,7 @@ class Sqflite {
   //Classe
   static String classe = "classe";
   static String criarClasse =
-      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidade INTEGER, ataque DOUBLE, defesa DOUBLE, vida DOUBLE, agilidade DOUBLE, mana INTEGER)";
+      "CREATE TABLE classe(id INTEGER PRIMARY KEY, nome TEXT, habilidade INTEGER, ataque DOUBLE, defesa DOUBLE, vida INTEGER, agilidade DOUBLE, mana INTEGER)";
   static String insertClasse =
       "INSERT INTO classe (nome, habilidade, ataque, defesa, vida, agilidade, mana) VALUES (?,?,?,?,?,?,?)";
   static String updateClasse =
