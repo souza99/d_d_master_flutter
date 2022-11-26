@@ -1,8 +1,15 @@
 class Habilidade {
+  late int _id;
   late String _descricao;
   late String _tipo;
   late double _porcentagem;
   late String _nome;
+
+  int get id => _id;
+
+  set id(int id) {
+    _id = id;
+  }
 
   String get descricao => _descricao;
 

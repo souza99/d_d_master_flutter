@@ -80,22 +80,29 @@ class _ListaPersonagemState extends State<ListaPersonagem> {
                   title: Text(personagem['nome'].toString()),
                   subtitle: Text(personagem['vida'].toString()),
                   trailing: Container(
-                    width: 145,
+                    width: 200,
                     child: Row(
                       children: [
                         IconButton(
-                          icon: const Icon(MdiIcons.heart),
-                          color: Colors.green,
-                          onPressed: () {
-                            Navigator.pushNamed(
-                              context, '/dado',
-                              arguments: personagem)
-                              .then((value) {
-                            setState(() {});
-                          });
-
-                          }
-                        ),
+                            icon: const Icon(MdiIcons.sword),
+                            color: Color.fromARGB(255, 206, 168, 0),
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/dado',
+                                      arguments: personagem)
+                                  .then((value) {
+                                setState(() {});
+                              });
+                            }),
+                        IconButton(
+                            icon: const Icon(MdiIcons.heart),
+                            color: Colors.green,
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/dado',
+                                      arguments: personagem)
+                                  .then((value) {
+                                setState(() {});
+                              });
+                            }),
                         IconButton(
                           icon: const Icon(Icons.edit),
                           color: Colors.amber,
